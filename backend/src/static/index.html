@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ForensicWeb Dashboard</title>
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/dashboard.css">
+    
+    <!-- Chart.js para gráficos -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body class="dashboard-body">
+    <!-- Header del Dashboard -->
+    <header class="dashboard-header">
+        <div class="header-container">
+            <div class="logo">
+                <h1>ForensicWeb</h1>
+            </div>
+            
+            <nav class="header-nav">
+                <ul>
+                    <li><a href="#dashboard" data-page="dashboard" class="nav-link active">Dashboard</a></li>
+                    <li><a href="#cases" data-page="cases" class="nav-link">Casos</a></li>
+                    <li><a href="#clients" data-page="clients" class="nav-link">Clientes</a></li>
+                    <li class="user-menu">
+                        <a href="#profile" class="user-profile">
+                            <span class="user-name" id="user-name">Usuario</span>
+                            <span class="user-avatar">👤</span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#profile">Perfil</a></li>
+                            <li><a href="#settings">Configuración</a></li>
+                            <li><a href="#" onclick="logout()">Cerrar Sesión</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Sidebar -->
+    <aside class="dashboard-sidebar">
+        <nav class="sidebar-nav">
+            <ul>
+                <li class="nav-section">
+                    <h3>Dashboard</h3>
+                    <ul>
+                        <li><a href="#dashboard" data-page="dashboard" class="sidebar-link active">Resumen</a></li>
+                        <li><a href="#stats" data-page="stats" class="sidebar-link">Estadísticas</a></li>
+                    </ul>
+                </li>
+                
+                <li class="nav-section">
+                    <h3>Gestión</h3>
+                    <ul>
+                        <li><a href="#cases" data-page="cases" class="sidebar-link">Casos</a></li>
+                        <li><a href="#clients" data-page="clients" class="sidebar-link">Clientes</a></li>
+                        <li><a href="#equipment" data-page="equipment" class="sidebar-link">Equipos</a></li>
+                    </ul>
+                </li>
+                
+                <li class="nav-section">
+                    <h3>Comunicación</h3>
+                    <ul>
+                        <li><a href="#contacts" data-page="contacts" class="sidebar-link">Mensajes</a></li>
+                        <li><a href="#calendar" data-page="calendar" class="sidebar-link">Agenda</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+    </aside>
+
+    <!-- Contenido Principal -->
+    <main class="dashboard-main">
+        <div class="content-header">
+            <h2 id="page-title">Dashboard</h2>
+            <div class="breadcrumb">
+                <span id="breadcrumb-content">Dashboard</span>
+            </div>
+        </div>
+        
+        <div class="content-body" id="main-content">
+            <!-- El contenido se cargará dinámicamente aquí -->
+            <div class="loading">
+                <div class="spinner"></div>
+                <p>Cargando...</p>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="dashboard-footer">
+        <div class="footer-content">
+            <p>&copy; 2024 ForensicWeb Dashboard. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <!-- Modal para login -->
+    <div id="login-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Iniciar Sesión</h2>
+            </div>
+            <form id="login-form">
+                <div class="form-group">
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Contraseña:</label>
+                    <input type="password" id="password" name="password" required>
+                </div>
+                <div class="form-actions">
+                    <button type="submit" class="btn btn-primary">Iniciar Sesión</button>
+                </div>
+            </form>
+            <div class="login-help">
+                <p>Usuario de prueba: admin@forensicweb.com</p>
+                <p>Contraseña: admin123</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script src="js/api.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/dashboard.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>
