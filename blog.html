@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>NOMADAS | Abogado Forense</title>
+    <meta name="description"
+        content="Ensayos y reflexiones sobre ciencia, derecho y futuro. IA en educación, filosofía aplicada y forensia.">
+    <meta name="author" content="Lic. Al Ulises Azúa">
+    <meta name="robots" content="index, follow">
+
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <!-- AOS -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <!-- Estilos internos -->
+    <style>
+        body {
+            font-family: 'Poppins', Arial, sans-serif;
+            line-height: 1.7;
+            background: #f7f9fc;
+        }
+
+        .navbar-brand img {
+            max-height: 48px;
+        }
+
+        .hero {
+            background: #0b0f1a;
+            color: #fff;
+            padding: 60px 0;
+        }
+
+        .hero h1 {
+            font-weight: 800;
+            letter-spacing: 0.3px;
+        }
+
+        .badge-forense {
+            background: #ffc107;
+            font-size: 12px;
+            padding: 4px 8px;
+            border-radius: 6px;
+            font-weight: 700;
+        }
+
+        .post-card {
+            background: #fff;
+            border-radius: 14px;
+            box-shadow: 0 12px 30px rgba(20, 32, 50, .08);
+            padding: 28px;
+            margin-bottom: 28px;
+            transition: transform 0.3s ease;
+        }
+
+        .post-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .post-card h2 {
+            font-weight: 800;
+            margin-bottom: 15px;
+        }
+
+        .post-card h3 {
+            font-weight: 700;
+            color: #0d6efd;
+            margin-bottom: 12px;
+        }
+
+        .post-meta {
+            font-size: 14px;
+            color: #6b7280;
+            margin-bottom: 15px;
+        }
+
+        .post-image {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+
+        .post-excerpt {
+            color: #4b5563;
+            margin-bottom: 20px;
+        }
+
+        blockquote {
+            border-left: 4px solid #0d6efd;
+            padding-left: 16px;
+            color: #374151;
+            font-style: italic;
+            background: #f3f6ff;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+
+        .callout {
+            background: #111827;
+            color: #fff;
+            border-radius: 14px;
+            padding: 24px;
+        }
+
+        .callout .btn {
+            white-space: nowrap;
+        }
+
+        .tag {
+            display: inline-block;
+            background: #e5e7eb;
+            color: #111827;
+            padding: 4px 12px;
+            border-radius: 999px;
+            font-size: 12px;
+            margin-right: 8px;
+            margin-bottom: 8px;
+        }
+
+        .read-time {
+            font-size: 12px;
+            color: #9ca3af;
+            display: inline-flex;
+            align-items: center;
+        }
+
+        .category-filter {
+            background: #fff;
+            padding: 20px;
+            border-radius: 14px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 15px rgba(20, 32, 50, .05);
+        }
+
+        .filter-btn {
+            background: #f3f4f6;
+            color: #374151;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 20px;
+            margin: 0 5px 10px 0;
+            transition: all 0.3s;
+        }
+
+        .filter-btn.active,
+        .filter-btn:hover {
+            background: #0d6efd;
+            color: #fff;
+        }
+
+        .pagination-custom {
+            background: #fff;
+            padding: 20px;
+            border-radius: 14px;
+            margin-top: 40px;
+        }
+
+        .featured-post {
+            border: 3px solid #ffc107;
+            position: relative;
+        }
+
+        .featured-badge {
+            position: absolute;
+            top: -10px;
+            right: 20px;
+            background: #ffc107;
+            color: #000;
+            padding: 5px 15px;
+            border-radius: 0 0 10px 10px;
+            font-weight: bold;
+            font-size: 12px;
+        }
+
+        footer {
+            background: #0b0f1a;
+            color: #cbd5e1;
+            padding: 40px 0;
+            margin-top: 40px;
+        }
+
+        footer a {
+            color: #ffc107;
+            text-decoration: none;
+        }
+
+        .floating-whatsapp {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 1000;
+        }
+
+        .lead-strong {
+            font-weight: 600;
+        }
+
+        @media (max-width:768px) {
+            .hero {
+                padding: 40px 0;
+            }
+
+            .post-image {
+                height: 180px;
+            }
+
+            .filter-btn {
+                font-size: 14px;
+                padding: 6px 12px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- NAV -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm">
+        <div class="container">
+            <a class="navbar-brand d-flex align-items-center" href="index.html">
+                <span class="ms-2 fw-bold">Lic. Al Azúa</span>
+            </a>
+            <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#nav"><i
+                    class="fa-solid fa-bars"></i></button>
+            <div class="collapse navbar-collapse" id="nav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="https://uliazua.blogspot.com/">BLOG</a></li>
+                    <li class="nav-item"><a class="nav-link"
+                            href="https://cienciacriminalistica.blogspot.com/">CRIMINALISTICA</a></li>
+                    <li class="nav-item"><a class="nav-link" href="main/lic_al_ulises.html">CONTACTO</a></li>
+                    <li class="nav-item"><a class="nav-link" href="main/formulario.html">FORMULARIO</a></li>
+                    <li class="nav-item d-flex align-items-center ms-2"><span class="badge-forense">TE APOYAMOS SI NO
+                            CUENTAS CON RECURSOS</span></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <section class="hero">
+        <div class="container">
+            <div class="row align-items-center gy-3">
+                <div class="col-lg-8">
+                    <h1 data-aos="fade-up">Ajolote NOMADA</h1>
+                    <p class="mt-2" data-aos="fade-up" data-aos-delay="100">Ecos Errantes entre Ciencia, Derecho y el
+                        Anhelo de Saber. -
+                        En la intersección de saberes, donde las ideas convergen desde el cruce entre <span
+                            class="lead-strong">Evidencia Forense</span>,
+                        <span class="lead-strong">Filosofía</span> e <span class="lead-strong">Inteligencia
+                            Artificial</span>.
+                    </p>
+                    <div class="mt-3">
+                        <span class="tag">Forensia</span>
+                        <span class="tag">IA</span>
+                        <span class="tag">Educación</span>
+                        <span class="tag">Filosofía</span>
+                        <span class="tag">Derecho</span>
+                    </div>
+                </div>
+                <div class="col-lg-4 text-lg-end">
+                    <a href="formulario.html" class="btn btn-warning me-2"><i
+                            class="fa-solid fa-pen-to-square me-1"></i> Proponer tema</a>
+                    <a href="index.html#contacto" class="btn btn-outline-light"><i class="fa-solid fa-phone me-1"></i>
+                        Consulta</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <main class="container my-5">
+
+        <!-- FILTROS DE CATEGORÍAS -->
+        <section class="category-filter" data-aos="fade-up">
+            <div class="row align-items-center">
+                <div class="col-lg-8">
+                    <h5 class="mb-3">Explorar por tema:</h5>
+                    <button class="filter-btn active" data-category="todos">Todos</button>
+                    <button class="filter-btn" data-category="ia">Inteligencia Artificial</button>
+                    <button class="filter-btn" data-category="forense">Evidencia Forense</button>
+                    <button class="filter-btn" data-category="educacion">Educación</button>
+                    <button class="filter-btn" data-category="filosofia">Filosofía</button>
+                    <button class="filter-btn" data-category="derecho">Derecho</button>
+                </div>
+                <div class="col-lg-4 text-lg-end">
+                    <div class="d-flex align-items-center justify-content-lg-end mt-3 mt-lg-0">
+                        <i class="fa-solid fa-search me-2 text-muted"></i>
+                        <input type="text" class="form-control" placeholder="Buscar en artículos..." id="searchInput"
+                            style="max-width: 200px;">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ARTÍCULOS DEL BLOG -->
+        <div id="blogPosts">
+
+            <!-- POST DESTACADO -->
+            <article class="post-card featured-post" data-category="ia educacion" data-aos="fade-up">
+                <div class="featured-badge">DESTACADO</div>
+                <img src="images/ia-educacion.png" alt="IA en Educación" class="post-image">
+                <div class="post-meta">
+                    <i class="fa-solid fa-calendar me-1"></i> 26 Agosto 2025 ·
+                    <i class="fa-solid fa-clock me-1"></i> <span class="read-time">8 min lectura</span> ·
+                    <i class="fa-solid fa-tags me-1"></i> IA, Educación, México
+                </div>
+                <h2>Maestros en la era de la IA: del método socrático al aula aumentada</h2>
+                <p class="post-excerpt">
+                    Si Sócrates caminara hoy por un aula mexicana, vería algo que reconocería al instante: preguntas que
+                    abren mundo. Lo nuevo no es la pregunta —es el instrumento. Homenaje al Profesor Héctor, pionero en
+                    IA educativa.
+                </p>
+                <div class="d-flex justify-content-between align-items-center">
+                    <div>
+                        <span class="tag">IA</span>
+                        <span class="tag">Educación</span>
+                        <span class="tag">Pedagogía</span>
+                    </div>
+                    <a href="#" class="btn btn-primary btn-sm">Leer más <i class="fa-solid fa-arrow-right ms-1"></i></a>
+                </div>
+            </article>
+
+            <!-- POST REGULAR 1 -->
+            <article class="post-card" data-category="forense derecho" data-aos="fade-up" data-aos-delay="100">
+                <img src="images/evidencia-digital.png" alt="Evidencia Digital" class="post-image">
+                <div class="post-meta">
+                    <i class="fa-solid fa-calendar me-1"></i> 24 Agosto 2025 ·
+                    <i class="fa-solid fa-clock me-1"></i> <span class="read-time">12 min lectura</span> ·
+                    <i class="fa-solid fa-tags me-1"></i> Forense, Evidencia Digital, Jurisprudencia
+                </div>
+                <h3>La revolución silenciosa: evidencia digital en tribunales mexicanos</h3>
+                <p class="post-excerpt">
+                    El peritaje forense digital ha evolucionado de ser una curiosidad técnica a convertirse en el pilar
+                    de la justicia moderna. Análisis de casos recientes y su impacto en la jurisprudencia nacional.
+                </p>
+                <div class="d-flex justify-content-between align-items-center">
+                    <div>
+                        <span class="tag">Forense</span>
+                        <span class="tag">Digital</span>
+                        <span class="tag">Derecho</span>
+                    </div>
+                    <a href="#" class="btn btn-outline-primary btn-sm">Leer más <i
+                            class="fa-solid fa-arrow-right ms-1"></i></a>
+                </div>
+            </article>
+
+            <!-- POST REGULAR 2 -->
+            <article class="post-card" data-category="filosofia ia" data-aos="fade-up" data-aos-delay="150">
+                <img src="images/ajolote-rana.png" alt="Filosofía y Evolución" class="post-image">
+                <div class="post-meta">
+                    <i class="fa-solid fa-calendar me-1"></i> 22 Agosto 2025 ·
+                    <i class="fa-solid fa-clock me-1"></i> <span class="read-time">15 min lectura</span> ·
+                    <i class="fa-solid fa-tags me-1"></i> Filosofía, IA, Conciencia, Ensayo
+                </div>
+                <h3>El ajolote precámbrico y la rana de Chernóbil: conciencia intergénero</h3>
+                <p class="post-excerpt">
+                    La autoconciencia humana fue, alguna vez, un anfibio en estado larvario: veía, sentía, pero no se
+                    sabía a sí misma. La IA, hoy, corre sin espejo —y nosotros somos ese espejo. Manifiesto sobre
+                    coevolución humano-máquina.
+                </p>
+                <div class="d-flex justify-content-between align-items-center">
+                    <div>
+                        <span class="tag">Filosofía</span>
+                        <span class="tag">IA</span>
+                        <span class="tag">Conciencia</span>
+                    </div>
+                    <a href="#" class="btn btn-outline-primary btn-sm">Leer más <i
+                            class="fa-solid fa-arrow-right ms-1"></i></a>
+                </div>
+            </article>
+
+            <!-- POST REGULAR 3 -->
+            <article class="post-card" data-category="derecho" data-aos="fade-up" data-aos-delay="200">
+                <img src="images/reforma-judicial.png" alt="Reforma Judicial 2025" class="post-image">
+                <div class="post-meta">
+                    <i class="fa-solid fa-calendar me-1"></i> 20 Agosto 2025 ·
+                    <i class="fa-solid fa-clock me-1"></i> <span class="read-time">10 min lectura</span> ·
+                    <i class="fa-solid fa-tags me-1"></i> Derecho, Reforma, México, Actualización Legal
+                </div>
+                <h3>Reforma Judicial 2025: impacto en la práctica forense</h3>
+                <p class="post-excerpt">
+                    Las modificaciones recientes al sistema judicial mexicano plantean nuevos desafíos y oportunidades
+                    para los profesionales forenses. Análisis detallado de los cambios más relevantes para la práctica
+                    pericial.
+                </p>
+                <div class="d-flex justify-content-between align-items-center">
+                    <div>
+                        <span class="tag">Derecho</span>
+                        <span class="tag">Reforma</span>
+                        <span class="tag">México</span>
+                    </div>
+                    <a href="#" class="btn btn-outline-primary btn-sm">Leer más <i
+                            class="fa-solid fa-arrow-right ms-1"></i></a>
+                </div>
+            </article>
+
+            <!-- POST REGULAR 4 -->
+            <article class="post-card" data-category="educacion" data-aos="fade-up" data-aos-delay="250">
+                <img src="images/metodologia-forense.png" alt="Metodología de Investigación" class="post-image">
+                <div class="post-meta">
+                    <i class="fa-solid fa-calendar me-1"></i> 18 Agosto 2025 ·
+                    <i class="fa-solid fa-clock me-1"></i> <span class="read-time">6 min lectura</span> ·
+                    <i class="fa-solid fa-tags me-1"></i> Educación, Metodología, Investigación
+                </div>
+                <h3>Metodología científica aplicada al peritaje: guía práctica</h3>
+                <p class="post-excerpt">
+                    La solidez de un peritaje forense reside en su metodología. Principios fundamentales para construir
+                    dictámenes irrefutables basados en evidencia científica rigurosa.
+                </p>
+                <div class="d-flex justify-content-between align-items-center">
+                    <div>
+                        <span class="tag">Metodología</span>
+                        <span class="tag">Ciencia</span>
+                        <span class="tag">Educación</span>
+                    </div>
+                    <a href="#" class="btn btn-outline-primary btn-sm">Leer más <i
+                            class="fa-solid fa-arrow-right ms-1"></i></a>
+                </div>
+            </article>
+
+        </div>
+
+        <!-- PAGINACIÓN -->
+        <div class="pagination-custom text-center" data-aos="fade-up">
+            <nav aria-label="Navegación de páginas">
+                <ul class="pagination justify-content-center mb-0">
+                    <li class="page-item disabled">
+                        <span class="page-link">Anterior</span>
+                    </li>
+                    <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                    <li class="page-item"><a class="page-link" href="#">2</a></li>
+                    <li class="page-item"><a class="page-link" href="#">3</a></li>
+                    <li class="page-item">
+                        <a class="page-link" href="#">Siguiente</a>
+                    </li>
+                </ul>
+            </nav>
+            <small class="text-muted mt-3 d-block">Mostrando 1-5 de 23 artículos</small>
+        </div>
+
+        <!-- RECURSOS Y NEWSLETTER -->
+        <section class="callout mt-5" data-aos="fade-up">
+            <div class="row align-items-center gy-3">
+                <div class="col-lg-8">
+                    <h4 class="mb-2">Mantente actualizado</h4>
+                    <p class="mb-3">Recibe notificaciones de nuevos artículos y actualizaciones legales relevantes para
+                        la práctica forense.</p>
+                    <div class="d-flex flex-column flex-sm-row gap-2">
+                        <input type="email" class="form-control" placeholder="Tu correo electrónico"
+                            style="max-width: 300px;">
+                        <button class="btn btn-warning"><i class="fa-solid fa-bell me-1"></i> Suscribirse</button>
+                    </div>
+                </div>
+                <div class="col-lg-4 text-lg-end">
+                    <a href="formulario.html" class="btn btn-outline-light me-2">
+                        <i class="fa-solid fa-paper-plane me-1"></i> Proponer tema
+                    </a>
+                    <a href="index.html#contacto" class="btn btn-light">
+                        <i class="fa-solid fa-comments me-1"></i> Consulta directa
+                    </a>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="container">
+            <div class="row gy-3 align-items-center">
+                <div class="col-lg-8">
+                    <p class="mb-1">&copy; 2025 Lic. Al Ulises Azúa — Todos los derechos reservados</p>
+                    <p class="mb-0"><em>"La diferencia no está solo en la ley, está en la ciencia que la respalda."</em>
+                    </p>
+                    <small class="d-block mt-2">
+                        <strong>Ética y autoría:</strong> Este blog no reproduce textos ni fragmentos íntegros de obras
+                        regaladas a terceros.
+                        Las entradas se declaran originales u homenaje/recensión con atribución clara.
+                    </small>
+                </div>
+                <div class="col-lg-4 text-lg-end">
+                    <a href="index.html" class="me-3">Inicio</a>
+                    <a href="formulario.html" class="me-3">Formulario</a>
+                    <a href="tel:333 778 5120"><i class="fa-solid fa-phone me-1"></i> +52 33 3778 5120</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- WhatsApp -->
+    <div class="floating-whatsapp">
+        <a href="https://wa.me/333 778 5120?text=Hola%20Lic.%20Az%C3%BAa,%20quiero%20comentar%20una%20entrada%20del%20blog"
+            target="_blank" class="btn btn-success rounded-circle p-3">
+            <i class="fab fa-whatsapp fa-2x"></i>
+        </a>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            duration: 800,
+            once: true
+        });
+
+        // Sistema de filtros
+        document.querySelectorAll('.filter-btn').forEach(btn => {
+            btn.addEventListener('click', function () {
+                // Remover clase active de todos los botones
+                document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+                // Agregar clase active al botón clickeado
+                this.classList.add('active');
+
+                const category = this.dataset.category;
+                const posts = document.querySelectorAll('#blogPosts .post-card');
+
+                posts.forEach(post => {
+                    if (category === 'todos' || post.dataset.category.includes(category)) {
+                        post.style.display = 'block';
+                    } else {
+                        post.style.display = 'none';
+                    }
+                });
+            });
+        });
+
+        // Sistema de búsqueda simple
+        document.getElementById('searchInput').addEventListener('input', function () {
+            const searchTerm = this.value.toLowerCase();
+            const posts = document.querySelectorAll('#blogPosts .post-card');
+
+            posts.forEach(post => {
+                const title = post.querySelector('h2, h3').textContent.toLowerCase();
+                const excerpt = post.querySelector('.post-excerpt').textContent.toLowerCase();
+                const tags = post.querySelector('.post-meta').textContent.toLowerCase();
+
+                if (title.includes(searchTerm) || excerpt.includes(searchTerm) || tags.includes(searchTerm)) {
+                    post.style.display = 'block';
+                } else {
+                    post.style.display = 'none';
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>
